@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E.A.K. | Executive Memo</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&family=Playfair+Display:ital,wght@1,600&display=swap" rel="stylesheet">
+    <style>
+        body { background: #0f172a; font-family: 'Inter', sans-serif; }
+        
+        /* Official Stationery Look */
+        .memo-page {
+            background: white;
+            color: #1e293b;
+            box-shadow: 0 0 40px rgba(0,0,0,0.5);
+            width: 210mm; /* A4 Width */
+            min-height: 297mm; /* A4 Height */
+            margin: 20px auto;
+            padding: 25mm;
+            position: relative;
+        }
+
+        .signature-font { font-family: 'Playfair Display', serif; font-style: italic; }
+
+        @media print {
+            body { background: none; padding: 0; }
+            .no-print { display: none !important; }
+            .memo-page { margin: 0; box-shadow: none; width: 100%; }
+        }
+
+        .signature-box img {
+            max-width: 150px;
+            max-height: 60px;
+            mix-blend-mode: multiply; /* Makes white background of signature transparent */
+        }
+    </style>
+</head>
+<body class="py-10">
+
+    <div class="max-w-[210mm] mx-auto mb-6 flex justify-between items-center no-print px-4">
+        <h2 class="text-white font-bold tracking-widest text-sm uppercase">Executive Memo Generator</h2>
+        <button onclick="window.print()" class="bg-blue-600 hover:bg-blue-500 text-white px-6 py-2 rounded-lg font-bold transition-all shadow-lg">
+            Print to PDF
+        </button>
+    </div>
+
+    <main class="memo-page border-t-[12px] border-blue-900">
+        
+        <header class="flex justify-between items-start border-b-2 border-slate-200 pb-8 mb-10">
+            <div>
+                <h1 class="text-3xl font-black text-blue-900 tracking-tighter uppercase italic">Executive Archive</h1>
+                <p class="text-[10px] font-bold text-slate-500 tracking-[0.4em] uppercase">E.A.K. Executive Council</p>
+            </div>
+            <div class="text-right">
+                <p class="font-bold text-sm">INTERNAL MEMORANDUM</p>
+                <p class="text-xs text-slate-500" id="current-date"></p>
+            </div>
+        </header>
+
+        <section class="space-y-4 mb-12">
+            <div class="flex">
+                <span class="w-20 font-bold uppercase text-xs text-slate-400">To:</span>
+                <span class="font-bold">All Students (HND II & ND II), Computer Science Dept.</span>
+            </div>
+            <div class="flex">
+                <span class="w-20 font-bold uppercase text-xs text-slate-400">From:</span>
+                <span class="font-bold text-blue-900">Office of the Executive Council</span>
+            </div>
+            <div class="flex">
+                <span class="w-20 font-bold uppercase text-xs text-slate-400">Ref:</span>
+                <span class="mono text-sm">EAK/2026/EXAM-PREP/001</span>
+            </div>
+            <div class="flex items-start border-t border-slate-100 pt-4">
+                <span class="w-20 font-bold uppercase text-xs text-slate-400 mt-1">Subj:</span>
+                <span class="font-black text-xl leading-tight uppercase underline decoration-blue-900 decoration-2 underline-offset-4">
+                    Official Release of 2026 Examination Preparatory Materials (First Semester)
+                </span>
+            </div>
+        </section>
+
+        <article class="text-justify leading-relaxed text-slate-700 space-y-6">
+            <p>
+                Following the directive of the <strong>Executive Council (E.A.K)</strong>, this memo serves as an official notice for the deployment of comprehensive preparatory archives for the upcoming First Semester examinations. 
+            </p>
+            <p>
+                The released materials have been meticulously curated to cover core competencies across the <strong>Software & Web Development (HND II)</strong> and <strong>Computer Science (ND II)</strong> tracks. Students are advised to utilize these resources in line with the department's academic standards.
+            </p>
+            <p>
+                Key focus areas for this session include:
+            </p>
+            <ul class="list-disc ml-8 space-y-2 font-medium">
+                <li>Enterprise Systems & Advanced Java Logic</li>
+                <li>Cloud Infrastructure & Security Protocols</li>
+                <li>Data Structures & Algorithmic Foundations</li>
+                <li>Professional IT Ethics & Technopreneurship</li>
+            </ul>
+            <p>
+                We remain committed to ensuring academic excellence and providing the necessary tools for success within the School of Computer Science.
+            </p>
+        </article>
+
+        <section class="mt-20 flex justify-between items-end">
+            <div class="text-center">
+                <div class="signature-box mb-2 h-16 flex items-end justify-center">
+                    <img src="your_sig.png" alt="General Secretary Signature">
+                </div>
+                <div class="border-t border-slate-900 pt-2 w-48">
+                    <p class="font-bold text-sm uppercase">E.A.K. Admin</p>
+                    <p class="text-[10px] text-slate-500 uppercase font-bold tracking-widest">General Secretary</p>
+                </div>
+            </div>
+
+            <div class="text-center">
+                <div class="signature-box mb-2 h-16 flex items-end justify-center">
+                    <img src="president_sig.png" alt="President Signature">
+                </div>
+                <div class="border-t border-slate-900 pt-2 w-48">
+                    <p class="font-bold text-sm uppercase">The Executive</p>
+                    <p class="text-[10px] text-slate-500 uppercase font-bold tracking-widest">Council President</p>
+                </div>
+            </div>
+        </section>
+
+        <div class="absolute bottom-10 right-10 opacity-[0.05] pointer-events-none">
+            <h1 class="text-8xl font-black italic uppercase">EAK</h1>
+        </div>
+    </main>
+
+    <script>
+        // Set current date automatically
+        const options = { year: 'numeric', month: 'long', day: 'numeric' };
+        document.getElementById('current-date').innerText = new Date().toLocaleDateString(undefined, options);
+    </script>
+</body>
+</html>
