@@ -3,25 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>E.A.K. | Executive Memo</title>
+    <title>E.A.K. | Official Memo - Meeting Regulations</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&family=Playfair+Display:ital,wght@1,600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=JetBrains+Mono&display=swap" rel="stylesheet">
     <style>
         body { background: #0f172a; font-family: 'Inter', sans-serif; }
+        .mono { font-family: 'JetBrains Mono', monospace; }
         
-        /* Official Stationery Look */
         .memo-page {
             background: white;
             color: #1e293b;
-            box-shadow: 0 0 40px rgba(0,0,0,0.5);
-            width: 210mm; /* A4 Width */
-            min-height: 297mm; /* A4 Height */
-            margin: 20px auto;
+            width: 210mm; 
+            min-height: 297mm;
+            margin: 40px auto;
             padding: 25mm;
             position: relative;
+            box-shadow: 0 0 50px rgba(0,0,0,0.3);
         }
 
-        .signature-font { font-family: 'Playfair Display', serif; font-style: italic; }
+        .fine-box {
+            border-left: 4px solid #1e3a8a;
+            background: #f8fafc;
+        }
 
         @media print {
             body { background: none; padding: 0; }
@@ -29,108 +32,114 @@
             .memo-page { margin: 0; box-shadow: none; width: 100%; }
         }
 
-        .signature-box img {
-            max-width: 150px;
-            max-height: 60px;
-            mix-blend-mode: multiply; /* Makes white background of signature transparent */
+        /* Essential for making manually uploaded signature scans look professional */
+        .signature-img {
+            max-width: 160px;
+            max-height: 70px;
+            mix-blend-mode: multiply;
+            filter: contrast(1.2) brightness(0.9);
         }
     </style>
 </head>
 <body class="py-10">
 
-    <div class="max-w-[210mm] mx-auto mb-6 flex justify-between items-center no-print px-4">
-        <h2 class="text-white font-bold tracking-widest text-sm uppercase">Executive Memo Generator</h2>
-        <button onclick="window.print()" class="bg-blue-600 hover:bg-blue-500 text-white px-6 py-2 rounded-lg font-bold transition-all shadow-lg">
-            Print to PDF
+    <div class="max-w-[210mm] mx-auto mb-8 flex justify-between items-center no-print px-4">
+        <div class="text-white">
+            <h2 class="font-black tracking-tighter text-xl italic uppercase">Executive Memo</h2>
+            <p class="text-[10px] text-slate-400 mono">EAK-REF: REG-2026-004</p>
+        </div>
+        <button onclick="window.print()" class="bg-blue-600 hover:bg-blue-500 text-white px-8 py-3 rounded-xl font-bold transition-all shadow-lg flex items-center gap-2">
+            <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M6 9V2h12v7M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2M6 14h12v8H6z"/></svg>
+            Save as PDF
         </button>
     </div>
 
-    <main class="memo-page border-t-[12px] border-blue-900">
+    <main class="memo-page rounded-sm">
         
-        <header class="flex justify-between items-start border-b-2 border-slate-200 pb-8 mb-10">
-            <div>
-                <h1 class="text-3xl font-black text-blue-900 tracking-tighter uppercase italic">Executive Archive</h1>
-                <p class="text-[10px] font-bold text-slate-500 tracking-[0.4em] uppercase">E.A.K. Executive Council</p>
+        <header class="flex justify-between items-start border-b-4 border-slate-900 pb-6 mb-8">
+            <div class="flex items-center gap-4">
+                <div class="bg-slate-900 text-white p-3 font-black text-2xl italic tracking-tighter">EAK</div>
+                <div>
+                    <h1 class="text-2xl font-black text-slate-900 uppercase leading-none">Executive Archive</h1>
+                    <p class="text-[9px] font-bold text-slate-500 tracking-[0.4em] uppercase mt-1">School of Computer Science Hub</p>
+                </div>
             </div>
             <div class="text-right">
-                <p class="font-bold text-sm">INTERNAL MEMORANDUM</p>
-                <p class="text-xs text-slate-500" id="current-date"></p>
+                <p class="font-black text-xs uppercase tracking-widest text-blue-900">Official Directive</p>
+                <p class="text-xs text-slate-500 mt-1 mono" id="date-string"></p>
             </div>
         </header>
 
-        <section class="space-y-4 mb-12">
-            <div class="flex">
-                <span class="w-20 font-bold uppercase text-xs text-slate-400">To:</span>
-                <span class="font-bold">All Students (HND II & ND II), Computer Science Dept.</span>
+        <section class="space-y-3 mb-10 text-sm">
+            <div class="flex border-b border-slate-100 pb-2">
+                <span class="w-24 font-bold text-slate-400 uppercase tracking-tighter">To:</span>
+                <span class="font-bold uppercase">All Executive Council Members & Stakeholders</span>
             </div>
-            <div class="flex">
-                <span class="w-20 font-bold uppercase text-xs text-slate-400">From:</span>
-                <span class="font-bold text-blue-900">Office of the Executive Council</span>
+            <div class="flex border-b border-slate-100 pb-2">
+                <span class="w-24 font-bold text-slate-400 uppercase tracking-tighter">From:</span>
+                <span class="font-bold uppercase">Office of the Secretariat</span>
             </div>
-            <div class="flex">
-                <span class="w-20 font-bold uppercase text-xs text-slate-400">Ref:</span>
-                <span class="mono text-sm">EAK/2026/EXAM-PREP/001</span>
-            </div>
-            <div class="flex items-start border-t border-slate-100 pt-4">
-                <span class="w-20 font-bold uppercase text-xs text-slate-400 mt-1">Subj:</span>
-                <span class="font-black text-xl leading-tight uppercase underline decoration-blue-900 decoration-2 underline-offset-4">
-                    Official Release of 2026 Examination Preparatory Materials (First Semester)
+            <div class="flex items-start pt-4">
+                <span class="w-24 font-bold text-slate-400 uppercase tracking-tighter mt-1">Subject:</span>
+                <span class="font-black text-2xl uppercase leading-tight text-slate-900">
+                    New Regulations Regarding Meeting Attendance and Penalties
                 </span>
             </div>
         </section>
 
-        <article class="text-justify leading-relaxed text-slate-700 space-y-6">
-            <p>
-                Following the directive of the <strong>Executive Council (E.A.K)</strong>, this memo serves as an official notice for the deployment of comprehensive preparatory archives for the upcoming First Semester examinations. 
-            </p>
-            <p>
-                The released materials have been meticulously curated to cover core competencies across the <strong>Software & Web Development (HND II)</strong> and <strong>Computer Science (ND II)</strong> tracks. Students are advised to utilize these resources in line with the department's academic standards.
-            </p>
-            <p>
-                Key focus areas for this session include:
-            </p>
-            <ul class="list-disc ml-8 space-y-2 font-medium">
-                <li>Enterprise Systems & Advanced Java Logic</li>
-                <li>Cloud Infrastructure & Security Protocols</li>
-                <li>Data Structures & Algorithmic Foundations</li>
-                <li>Professional IT Ethics & Technopreneurship</li>
-            </ul>
-            <p>
-                We remain committed to ensuring academic excellence and providing the necessary tools for success within the School of Computer Science.
-            </p>
+        <article class="text-slate-700 leading-relaxed space-y-6 text-[15px]">
+            <p>This memorandum serves as an official notice to all members regarding the newly ratified rules governing attendance at scheduled meetings. To maintain organizational discipline and project momentum, the following regulations are effective <strong>immediately</strong>.</p>
+            
+            <h3 class="font-black text-slate-900 uppercase text-sm tracking-wider">Attendance Penalties:</h3>
+            
+            <div class="fine-box p-6 rounded-r-lg space-y-4">
+                <div class="flex gap-4">
+                    <span class="bg-slate-900 text-white h-6 w-6 flex items-center justify-center rounded-full text-xs shrink-0">1</span>
+                    <p><strong>Unexcused Absence:</strong> Any member absent without a tangible reason or failing to inform the group at least <strong>two (2) days</strong> prior to the meeting shall incur a fine of <strong>₦2,000</strong>.</p>
+                </div>
+                <div class="flex gap-4">
+                    <span class="bg-slate-900 text-white h-6 w-6 flex items-center justify-center rounded-full text-xs shrink-0">2</span>
+                    <p><strong>Chronic Absenteeism:</strong> Any member who records three (3) consecutive absences from meetings shall incur a cumulative fine of <strong>₦5,000</strong>.</p>
+                </div>
+            </div>
+
+            <p>Please note that "tangible reasons" are subject to verification by the Secretariat. All fines must be cleared within 48 hours of the concluded meeting to avoid further disciplinary action.</p>
+            
+            <p class="font-bold italic text-slate-900 uppercase text-xs tracking-widest border-t border-slate-100 pt-6">The rule takes effect immediately upon the issuance of this notice.</p>
         </article>
 
-        <section class="mt-20 flex justify-between items-end">
-            <div class="text-center">
-                <div class="signature-box mb-2 h-16 flex items-end justify-center">
-                    <img src="your_sig.png" alt="General Secretary Signature">
+        <section class="mt-24 flex justify-between items-end px-4">
+            <div class="text-center group">
+                <div class="h-20 flex items-end justify-center pb-2">
+                    <img src="your_sig.png" alt="[Upload your_sig.png here]" class="signature-img">
                 </div>
-                <div class="border-t border-slate-900 pt-2 w-48">
-                    <p class="font-bold text-sm uppercase">E.A.K. Admin</p>
-                    <p class="text-[10px] text-slate-500 uppercase font-bold tracking-widest">General Secretary</p>
+                <div class="border-t-2 border-slate-900 w-56 pt-2">
+                    <p class="font-black text-sm uppercase">General Secretary</p>
+                    <p class="text-[9px] font-bold text-slate-400 uppercase tracking-[0.2em] mt-1">E.A.K. Administration</p>
                 </div>
             </div>
 
             <div class="text-center">
-                <div class="signature-box mb-2 h-16 flex items-end justify-center">
-                    <img src="president_sig.png" alt="President Signature">
+                <div class="h-20 flex items-end justify-center pb-2">
+                    <img src="president_sig.png" alt="[Upload president_sig.png here]" class="signature-img">
                 </div>
-                <div class="border-t border-slate-900 pt-2 w-48">
-                    <p class="font-bold text-sm uppercase">The Executive</p>
-                    <p class="text-[10px] text-slate-500 uppercase font-bold tracking-widest">Council President</p>
+                <div class="border-t-2 border-slate-900 w-56 pt-2">
+                    <p class="font-black text-sm uppercase">Council President</p>
+                    <p class="text-[9px] font-bold text-slate-400 uppercase tracking-[0.2em] mt-1">The Executive</p>
                 </div>
             </div>
         </section>
 
-        <div class="absolute bottom-10 right-10 opacity-[0.05] pointer-events-none">
-            <h1 class="text-8xl font-black italic uppercase">EAK</h1>
+        <div class="absolute bottom-10 left-25 text-[8px] mono text-slate-300 uppercase tracking-widest">
+            Document Verified by E.A.K. Internal Audit Unit // 2026-REG-AUTH
         </div>
     </main>
 
     <script>
-        // Set current date automatically
-        const options = { year: 'numeric', month: 'long', day: 'numeric' };
-        document.getElementById('current-date').innerText = new Date().toLocaleDateString(undefined, options);
+        // Automatic Date Formatting
+        const today = new Date();
+        const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+        document.getElementById('date-string').innerText = today.toLocaleDateString('en-NG', options);
     </script>
 </body>
 </html>
